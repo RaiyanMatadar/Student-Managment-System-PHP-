@@ -10,8 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     // get student_id from url and connected to variable 
     $student_id = $_GET["student_id"];
 
+    // query for selecting specific student details 
+    $query = "SELECT * FROM students WHERE student_id = $student_id";
+
     // made query with prepare statement to make it secure
-    $stmt = $pdo->prepare("SELECT * FROM students WHERE student_id = $student_id");
+    $stmt = $pdo->prepare($query);
 
     // execute the query
     $stmt->execute();
@@ -28,15 +31,20 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     try {
-
+        
+        // for connecting to databse 
         require_once "db_connect.php";
 
+        // selecting student_if from url using GET 
         $student_id = $_GET["student_id"];
+        
+        // selecting other using POST 
         $username = $_POST["username"];
         $email = $_POST["email"];
         $phone = $_POST["phone"];
         $course = $_POST["course"];
 
+        // query for updating the data 
         $query = "UPDATE students 
                   SET username = :username, 
                       email = :email, 
@@ -44,16 +52,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       course = :course 
                   WHERE student_id = :student_id";
 
+        // this is for security perpuse 
         $stmt = $pdo->prepare($query);
 
+        // connecting them using bind on the qury placeholder 
         $stmt->bindParam(":student_id", $student_id);
         $stmt->bindParam(":username",$username);
         $stmt->bindParam(":email",$email);
         $stmt->bindParam(":phone",$phone);
         $stmt->bindParam(":course",$course);
               
+        // executing query 
         $stmt->execute();
 
+        // sending the user to the view page 
         header("Location: view_students.php");
 
     } catch (Throwable $e) {

@@ -42,25 +42,13 @@ $stmt = null;
             <td><?= htmlspecialchars($user['course'])?></td>
             <td>
                 <button><a href="update_student.php?action=update&student_id=<?= $user['student_id']?>">Update</a></button>
-                <button><a href="update_student.php?action=update&student_id=<?= $user['student_id']?>">Delete</a></button>
+                <button><a href="delete_student.php?action=delete&student_id=<?= $user['student_id']?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a></button>
             </td>
         </tr>
         <?php endforeach; ?>
     </tbody>
+
+    <button><a href="index.php">back to Home</a></button>
 </table>
 </body>
 </html>
-
-<!-- lkk
- 
-foreach ($users as $user) {
-    foreach ($user as $key => $value) {
-        echo "$key: $value<br>";
-    }
-    echo "<hr>"; 
-    echo "<button><a href='update'>Update</a></button>";
-    echo "<button><a href='update'>Deleate</a></button>";
-}
-?>
-
--->
