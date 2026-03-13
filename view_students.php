@@ -35,14 +35,14 @@ $stmt = null;
     <tbody>
         <?php foreach ($users as $user): ?>
         <tr>
-            <td><?= $user['student_id'] ?></td>
-            <td><?= $user['username'] ?></td>
-            <td><?= $user['email'] ?></td>
-            <td><?= $user['phone'] ?></td>
-            <td><?= $user['course'] ?></td>
+            <td><?= htmlspecialchars($user['student_id'])?></td>
+            <td><?= htmlspecialchars($user['username'])?></td>
+            <td><?= htmlspecialchars($user['email'])?></td>
+            <td><?= htmlspecialchars($user['phone'])?></td>
+            <td><?= htmlspecialchars($user['course'])?></td>
             <td>
-                <button><a href="<?= $user['student_id'] ?>">Update</a></button>
-                <button><a href="<?= $user['student_id'] ?>">Delete</a></button>
+                <button><a href="update_student.php?action=update&student_id=<?= $user['student_id']?>">Update</a></button>
+                <button><a href="update_student.php?action=update&student_id=<?= $user['student_id']?>">Delete</a></button>
             </td>
         </tr>
         <?php endforeach; ?>
