@@ -48,7 +48,7 @@ $stmt = null;
         <?php endforeach; ?>
     </tbody>
 
-    <button><a href="index.php">back to Home</a></button>
+    <a href="add_student.php">back to Home</a>
 </table>
 </body>
 </html>

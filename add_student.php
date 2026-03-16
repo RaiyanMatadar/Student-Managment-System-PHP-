@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once "db_connect.php";
 
     if (empty($username) || empty($email) || empty($phone) || empty($course)) {
-        header("Location: index.php");
+        // header("Location: index.php");
         exit();
     }
 
@@ -35,10 +35,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = null;
 
     // keeping tghe user to the existing page once user submit the data 
-    header("Location: index.php");
+    header("Location: add_student.php");
     die();
 
-} else {
-    
-    header("Location: index.php");
 }
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Managment System</title>
+</head>
+<body>
+    <form action="add_student.php" method="post">
+        <input type="text" name="username" placeholder="enter name">
+        <input type="text" name="email" placeholder="enter email">
+        <input type="number" name="phone" placeholder="enter phone number">
+        <input type="text" name="course" placeholder="enter course name">
+        <button type="submit">add data</button>
+    </form>
+
+    <a href="view_students.php">view data</a>
+</body>
+</html> 

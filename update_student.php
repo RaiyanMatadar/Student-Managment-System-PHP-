@@ -92,5 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit" name="update">Update data</button>
     </form>
 
+    <a href="add_student.php">Back</a>
+
 </body>
 </html>
